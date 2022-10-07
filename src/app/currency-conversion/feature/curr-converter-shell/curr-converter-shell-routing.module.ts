@@ -4,11 +4,11 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [{
   path: '',
   loadChildren: async () =>
-    (await import('./home/feature/home/home.module')).HomeModule
+    (await import('../curr-converter/curr-converter.module')).CurrConverterModule
 }];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class CurrConverterShellRoutingModule { }
