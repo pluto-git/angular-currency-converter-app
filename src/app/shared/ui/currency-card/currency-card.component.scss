@@ -1,0 +1,25 @@
+@use '@angular/material' as mat;
+
+$card-color: mat.define-palette(mat.$indigo-palette);
+
+//our usd and euro card
+.divider {
+    padding-left: 1px;
+}
+
+.mat-card {
+    color: white;
+    padding: 10px;
+    background-color: mat.get-color-from-palette($card-color, 300);
+}
+
+.custom-margin{
+    margin-right: 2px;
+}
+.left-card {
+    border-radius: 12px 0 0 12px;
+}
+
+.right-card {
+    border-radius: 0 12px 12px 0;
+}

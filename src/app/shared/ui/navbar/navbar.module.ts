@@ -2,9 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDividerModule } from '@angular/material/divider';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatCardModule } from '@angular/material/card';
+import { RouterModule } from '@angular/router';
+import { CurrencyCardModule } from '../currency-card/currency-card.module';
+
 @NgModule({
   declarations: [
     NavbarComponent
@@ -12,9 +15,11 @@ import { MatDividerModule } from '@angular/material/divider';
   imports: [
     CommonModule,
     MatToolbarModule,
-    MatIconModule,
     MatButtonModule,
-    MatDividerModule
+    MatTooltipModule,
+    MatCardModule,
+    RouterModule,
+    CurrencyCardModule
   ],
   exports: [
     NavbarComponent

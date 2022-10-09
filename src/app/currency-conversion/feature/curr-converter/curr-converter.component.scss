@@ -1,0 +1,40 @@
+// Import material theming functions
+@use '@angular/material' as mat;
+$card-color: mat.define-palette(mat.$indigo-palette);
+$card-padding: 10px;
+
+
+///remove arrows from number inputs.
+/* Chrome, Safari, Edge, Opera */
+input[matinput]::-webkit-outer-spin-button,
+input[matinput]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[matinput][type=number] {
+    -moz-appearance: textfield;
+}
+
+
+mat-form-field {
+    width: 100%;
+}
+
+mat-card {
+    padding-bottom: 0;
+    border-radius: 1rem 1rem 1rem 1rem;
+}
+
+@media screen and (max-width: 800px) {
+    .currency-group {
+        flex-grow: 1;
+    }
+}
+
+@media screen and (min-width:992px) {
+    .currency-group {
+        display: flex;
+    }
+}

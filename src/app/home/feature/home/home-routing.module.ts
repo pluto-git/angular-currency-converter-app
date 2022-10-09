@@ -9,9 +9,10 @@ const routes: Routes = [
       {
         path: 'currency-conversion', loadChildren: async () =>
           (await import('../../../currency-conversion/feature/curr-converter-shell/curr-converter-shell.module')).CurrConverterShellModule
-      }
+      },
+
     ],
-  }
+  },
 ];
 
 @NgModule({

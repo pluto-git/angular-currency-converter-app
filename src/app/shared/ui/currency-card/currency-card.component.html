@@ -1,0 +1,8 @@
+<ng-container>
+    <span *ngFor="let cur of this.curConvSvc.navbarCurrencies" class="mat-body-1" [class.custom-margin]="cur.isFirst"
+        [matTooltip]="'UAH to exchange for 1 '+cur.base">
+        <mat-card [class.left-card]="cur.isFirst" [class.right-card]="!cur.isFirst">{{cur.base+" - "+(cur.value |
+            currency:
+            'UAH': '₴')}}</mat-card>
+    </span>
+</ng-container>
