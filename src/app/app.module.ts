@@ -9,6 +9,8 @@ import { LoaderInterceptor } from './shared/data-access/loader-interceptor';
 import { LoaderService } from './shared/data-access/loader.service';
 import { IconService } from './shared/data-access/icon.service';
 
+import { NgxSpinnerModule } from "ngx-spinner";
+
 @NgModule({
   declarations: [
     AppComponent
@@ -17,6 +19,7 @@ import { IconService } from './shared/data-access/icon.service';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    NgxSpinnerModule,
     HttpClientModule
   ],
   providers: [LoaderService,IconService,{ provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }],

@@ -8,9 +8,8 @@ const routes: Routes = [
       { path: '', redirectTo: '/currency-conversion', pathMatch: 'full' },
       {
         path: 'currency-conversion', loadChildren: async () =>
-          (await import('../../../currency-conversion/feature/curr-converter-shell/curr-converter-shell.module')).CurrConverterShellModule
+          (await import('../../../currency-conversion/feature/curr-converter/curr-converter.module')).CurrConverterModule
       },
-
     ],
   },
 ];

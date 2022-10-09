@@ -12,9 +12,6 @@ export class CurrencyCardComponent implements OnInit {
 
   constructor(public curConvSvc: CurrencyConverterService) { }
 
-  currencies!: CurrencyForCard[];
-  sub!: Subscription;
-
   ngOnInit(): void {
   };
 

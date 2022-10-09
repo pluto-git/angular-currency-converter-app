@@ -1,5 +1,5 @@
 <div *ngIf="this.loaderService.isLoading | async">
-    Loading!
+    <ngx-spinner type="ball-scale-multiple">Loading...</ngx-spinner>
 </div>
 <div class="h-100">
     <router-outlet></router-outlet>

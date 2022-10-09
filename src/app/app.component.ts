@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 import { IconService } from './shared/data-access/icon.service';
 import { LoaderService } from './shared/data-access/loader.service';
 import { CurrencyAPIService } from './shared/data-access/currency-api.service';

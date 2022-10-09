@@ -5,7 +5,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
-import { LoaderService } from '../../data-access/loader.service';
 
 @NgModule({
   declarations: [
@@ -21,6 +20,6 @@ import { LoaderService } from '../../data-access/loader.service';
   exports:[
     FootbarComponent
   ],
-  providers:[LoaderService]
+  providers:[]
 })
 export class FootbarModule { }

@@ -31,10 +31,19 @@ mat-card {
     .currency-group {
         flex-grow: 1;
     }
+
+    form {
+        width: 100%;
+    }
 }
 
 @media screen and (min-width:992px) {
     .currency-group {
         display: flex;
     }
+    // form{
+    //     display: flex;
+    // }
+
+
 }
