@@ -4,7 +4,7 @@ import { LoaderService } from './shared/data-access/loader.service';
 import { CurrencyAPIService } from './shared/data-access/currency-api.service';
 import { CurrencyConverterService } from './shared/data-access/currency-converter.service';
 
-import { startWith, switchMap, timer } from 'rxjs';
+import { startWith, switchMap, timer, retry, share} from 'rxjs';
 import { CurrencyRate } from 'src/app/shared/data-access/currency-models';
 @Component({
   selector: 'app-root',
@@ -18,7 +18,7 @@ export class AppComponent {
   interval$: any;
   currentTimeStamp!: number;
   lsKey: string = "Currencies";
- 
+
   constructor(private iconService: IconService, public loaderService: LoaderService, private apiSvc: CurrencyAPIService, private curConvSvc: CurrencyConverterService,
     public loadingSvc: LoaderService) {
   }
@@ -48,13 +48,14 @@ export class AppComponent {
 
     timer(startDelayMs, hourMs).pipe(
       startWith(0),
-      switchMap(() => this.apiSvc.getLiveCurrencies())
+      switchMap(() => this.apiSvc.getLiveCurrencies()), 
+      retry(2), 
+      share()
     ).subscribe({
       next: (data: CurrencyRate) => {
         //the api has a miniscule amount of calls for free.
         //and let's store it in ls for simplicity
         //and limit calls it with our retrieval timestamp.
-        data.rates
         data.retrievalTimestamp = Date.now();
         localStorage.setItem(this.lsKey, JSON.stringify(data));
         this.curConvSvc.currencyRates = data;
