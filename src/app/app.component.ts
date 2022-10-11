@@ -3,8 +3,9 @@ import { IconService } from './shared/data-access/icon.service';
 import { LoaderService } from './shared/data-access/loader.service';
 import { CurrencyAPIService } from './shared/data-access/currency-api.service';
 import { CurrencyConverterService } from './shared/data-access/currency-converter.service';
+import { NgxSpinnerService } from "ngx-spinner";
 
-import { startWith, switchMap, timer, retry, share} from 'rxjs';
+import { startWith, switchMap, timer, retry, share } from 'rxjs';
 import { CurrencyRate } from 'src/app/shared/data-access/currency-models';
 @Component({
   selector: 'app-root',
@@ -20,10 +21,11 @@ export class AppComponent {
   lsKey: string = "Currencies";
 
   constructor(private iconService: IconService, public loaderService: LoaderService, private apiSvc: CurrencyAPIService, private curConvSvc: CurrencyConverterService,
-    public loadingSvc: LoaderService) {
+    public loadingSvc: LoaderService, private spinner: NgxSpinnerService) {
   }
 
   ngOnInit(): void {
+    this.spinner.show();
     this.iconService.registerIcons();
 
     //calls are pretty limited for the free plan
@@ -39,6 +41,7 @@ export class AppComponent {
       this.curConvSvc.getActualEuroAndUSD();
     }
 
+    this.spinner.hide();
   }
 
   private getCurrencies(): void {
@@ -48,8 +51,8 @@ export class AppComponent {
 
     timer(startDelayMs, hourMs).pipe(
       startWith(0),
-      switchMap(() => this.apiSvc.getLiveCurrencies()), 
-      retry(2), 
+      switchMap(() => this.apiSvc.getLiveCurrencies()),
+      retry(2),
       share()
     ).subscribe({
       next: (data: CurrencyRate) => {
@@ -61,6 +64,8 @@ export class AppComponent {
         this.curConvSvc.currencyRates = data;
         console.log(this.curConvSvc);
         this.curConvSvc.getActualEuroAndUSD();
+
+        this.spinner.hide();
       },
       error: (err: Error) => console.error(err)
     });

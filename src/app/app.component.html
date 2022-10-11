@@ -1,6 +1,6 @@
-<div *ngIf="this.loaderService.isLoading | async">
-    <ngx-spinner type="ball-scale-multiple">Loading...</ngx-spinner>
-</div>
 <div class="h-100">
     <router-outlet></router-outlet>
 </div>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>
