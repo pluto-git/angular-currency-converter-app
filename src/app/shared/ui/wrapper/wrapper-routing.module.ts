@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home.component';
+import { WrapperComponent } from './wrapper.component';
 
 const routes: Routes = [
   {
-    path: '', component: HomeComponent, children: [
+    path: '', component: WrapperComponent, children: [
       { path: '', redirectTo: '/currency-conversion', pathMatch: 'full' },
       {
         path: 'currency-conversion', loadChildren: async () =>
-          (await import('../../../currency-conversion/feature/curr-converter/curr-converter.module')).CurrConverterModule
-      },
+          (await (await import('../../../currency-conversion/feature/curr-converter/curr-converter.module')).CurrConverterModule)
+      }
     ],
   },
 ];
@@ -18,4 +18,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class HomeRoutingModule { }
+export class WrapperRoutingModule { }

@@ -7,7 +7,10 @@ import { CustomPreloadingStrategyService } from './shared/data-access/custom-pre
 const routes: Routes = [{
   path: '', data: { preload: true },
   loadChildren: async () =>
-    (await import('./home/feature/home/home.module')).HomeModule
+    (await import('./shared/ui/wrapper/wrapper.module')).WrapperModule
+},
+{
+  path: '**', redirectTo: ''
 }
 ];
 

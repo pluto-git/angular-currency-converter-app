@@ -5,7 +5,6 @@ import { CurrConverterComponent } from './curr-converter.component';
 const routes: Routes = [
   {
     path: '', component: CurrConverterComponent,
-    
   }
 ];
 

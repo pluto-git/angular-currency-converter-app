@@ -1,4 +1,4 @@
-import { NgModule , CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -22,7 +22,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     NgxSpinnerModule,
     HttpClientModule
   ],
-  providers: [LoaderService,IconService,{ provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }],
+  providers: [LoaderService, IconService, { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

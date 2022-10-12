@@ -4,8 +4,9 @@ import { LoaderService } from './shared/data-access/loader.service';
 import { CurrencyAPIService } from './shared/data-access/currency-api.service';
 import { CurrencyConverterService } from './shared/data-access/currency-converter.service';
 import { NgxSpinnerService } from "ngx-spinner";
+import { ThemeService, AppThemes } from './shared/data-access/theme.service';
 
-import { startWith, switchMap, timer, retry, share } from 'rxjs';
+import { startWith, switchMap, timer, retry, share, takeUntil, Subject } from 'rxjs';
 import { CurrencyRate } from 'src/app/shared/data-access/currency-models';
 @Component({
   selector: 'app-root',
@@ -15,22 +16,24 @@ import { CurrencyRate } from 'src/app/shared/data-access/currency-models';
 })
 export class AppComponent {
 
-  title = 'angular-currency-exchange-app';
-  interval$: any;
-  currentTimeStamp!: number;
-  lsKey: string = "Currencies";
+  private lsKey: string = "Currencies";
+  public isDarkTheme: boolean = false;
+  private destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(private iconService: IconService, public loaderService: LoaderService, private apiSvc: CurrencyAPIService, private curConvSvc: CurrencyConverterService,
-    public loadingSvc: LoaderService, private spinner: NgxSpinnerService) {
+    public loadingSvc: LoaderService, private spinner: NgxSpinnerService,
+    public themeService: ThemeService) {
+
   }
 
   ngOnInit(): void {
+    // setting up the default theme from localStorage
+    this.getDefaultTheme();
+
     this.spinner.show();
     this.iconService.registerIcons();
 
-    //calls are pretty limited for the free plan
-    //so doing the turnover to get items from LS 
-    //and subscribing in the case of an empty object or if the last update was 1h ago
+
     this.curConvSvc.currencyRates = JSON.parse(localStorage.getItem(this.lsKey)!) || {};
 
     if (this.curConvSvc.isEmptyObject(this.curConvSvc.currencyRates) ||
@@ -41,9 +44,23 @@ export class AppComponent {
       this.curConvSvc.getActualEuroAndUSD();
     }
 
+    //hide the spinner anyway
     this.spinner.hide();
   }
 
+  private getDefaultTheme(): void {
+    this.themeService.getTheme();
+    this.themeService.currentTheme.pipe(takeUntil(this.destroy$)).subscribe((data) => {
+
+      if (data === AppThemes.dark) {
+        this.isDarkTheme = true;
+      } else {
+        this.isDarkTheme = false;
+      }
+    });
+  }
+
+  //call to our API
   private getCurrencies(): void {
 
     const startDelayMs = (60 - new Date().getMinutes()) * 60 * 1000;
@@ -53,7 +70,8 @@ export class AppComponent {
       startWith(0),
       switchMap(() => this.apiSvc.getLiveCurrencies()),
       retry(2),
-      share()
+      share(),
+      takeUntil(this.destroy$)
     ).subscribe({
       next: (data: CurrencyRate) => {
         //the api has a miniscule amount of calls for free.
@@ -62,9 +80,10 @@ export class AppComponent {
         data.retrievalTimestamp = Date.now();
         localStorage.setItem(this.lsKey, JSON.stringify(data));
         this.curConvSvc.currencyRates = data;
-        console.log(this.curConvSvc);
+
         this.curConvSvc.getActualEuroAndUSD();
 
+        //hide after http
         this.spinner.hide();
       },
       error: (err: Error) => console.error(err)
@@ -72,8 +91,10 @@ export class AppComponent {
 
   }
 
-
-
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
+  }
 
 
 

@@ -1,10 +1,22 @@
 @use '@angular/material' as mat;
 
-$card-color: mat.define-palette(mat.$indigo-palette);
-$card-padding: 10px;
 
-.menu-option:hover {
-  background-color: mat.get-color-from-palette($card-color, 900);
+.box {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.box:first-child>button {
+  margin-right: auto;
+}
+
+.box:last-child>span {
+  margin-left: auto;
+}
+
+.pointer {
+  cursor: pointer;
 }
 
 //2nd toolbar-row
@@ -13,6 +25,21 @@ $card-padding: 10px;
     0px 24px 38px rgb(0 0 0 / 14%);
 }
 
-app-currency-card{
+app-currency-card {
   display: flex;
+}
+
+@media (max-width: 768px) {
+  .middle-item>app-currency-card {
+    visibility: hidden;
+  }
+
+}
+
+@media (min-width: 769px) {
+  .second-row{
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
 }

@@ -1,6 +1,2 @@
 @use '@angular/material' as mat;
 $primary-color: mat.define-palette(mat.$indigo-palette);
-
-footer {
-    background-color: mat.get-color-from-palette($primary-color, 500);
-}

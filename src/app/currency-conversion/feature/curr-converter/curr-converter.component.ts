@@ -15,7 +15,7 @@ export class CurrConverterComponent implements OnInit {
   public cardHeader = 'Currency Converter';
   public currencyForm!: FormGroup;
   private sub!: Subscription;
-  public previousFormValue?: CurrencyCalculator;
+  private previousFormValue?: CurrencyCalculator;
 
   constructor(private svc: CurrencyConverterService) { }
 

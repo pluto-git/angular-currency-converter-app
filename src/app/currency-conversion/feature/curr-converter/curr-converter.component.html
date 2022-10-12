@@ -1,48 +1,50 @@
-<div class="container mb-3">
-    <h1 class="d-flex justify-content-center pt-5 pb-3"> {{cardHeader}}</h1>
-    <mat-card class="d-flex justify-content-center flex-wrap">
-        <form [formGroup]="currencyForm">
-            <div class="mx-1 currency-group align-self-center">
-                <div class="">
-                    <mat-form-field appearance="fill">
-                        <mat-label>Amount From</mat-label>
-                        <input type="number" matInput #input maxlength="20" placeholder="" value="1"
-                            formControlName="input">
-                    </mat-form-field>
+<div class="container mb-3 d-lg-flex flex-lg-col justify-content-lg-center">
+    <div class="align-items-center">
+        <h1 class="d-flex justify-content-center pt-5 pb-3"> {{cardHeader}}</h1>
+        <mat-card class="d-flex justify-content-center flex-wrap">
+            <form [formGroup]="currencyForm">
+                <div class="mx-1 currency-group align-self-center">
+                    <div class="">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Amount From</mat-label>
+                            <input type="number" matInput #input maxlength="20" placeholder="" value="1"
+                                formControlName="input">
+                        </mat-form-field>
+                    </div>
+                    <div class="">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Currency</mat-label>
+                            <mat-select formControlName="inputOption">
+                                <!-- could have been generated dynamically -->
+                                <mat-option value="UAH">UAH</mat-option>
+                                <mat-option value="USD">USD</mat-option>
+                                <mat-option value="EUR">EUR</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
                 </div>
-                <div class="">
-                    <mat-form-field appearance="fill">
-                        <mat-label>Currency</mat-label>
-                        <mat-select formControlName="inputOption">
-                            <!-- could have been generated dynamically -->
-                            <mat-option value="UAH">UAH</mat-option>
-                            <mat-option value="USD">USD</mat-option>
-                            <mat-option value="EUR">EUR</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-            </div>
 
-            <div class="mx-1 currency-group align-self-center">
-                <div>
-                    <mat-form-field class="" appearance="fill">
-                        <mat-label>Amount To</mat-label>
-                        <input matInput #input maxlength="20" placeholder="" formControlName="output">
-                    </mat-form-field>
-                </div>
-                <div>
-                    <mat-form-field appearance="fill">
-                        <mat-label>Currency</mat-label>
-                        <mat-select formControlName="outputOption">
-                            <mat-option value="UAH">UAH</mat-option>
-                            <mat-option value="USD">USD</mat-option>
-                            <mat-option value="EUR">EUR</mat-option>
-                        </mat-select>
+                <div class="mx-1 currency-group align-self-center">
+                    <div>
+                        <mat-form-field class="" appearance="fill">
+                            <mat-label>Amount To</mat-label>
+                            <input matInput #input maxlength="20" placeholder="" formControlName="output">
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Currency</mat-label>
+                            <mat-select formControlName="outputOption">
+                                <mat-option value="UAH">UAH</mat-option>
+                                <mat-option value="USD">USD</mat-option>
+                                <mat-option value="EUR">EUR</mat-option>
+                            </mat-select>
 
-                    </mat-form-field>
+                        </mat-form-field>
 
+                    </div>
                 </div>
-            </div>
-        </form>
-    </mat-card>
+            </form>
+        </mat-card>
+    </div>
 </div>

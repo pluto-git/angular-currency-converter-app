@@ -5,6 +5,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
 import { CurrencyCardModule } from '../currency-card/currency-card.module';
 
@@ -18,6 +20,8 @@ import { CurrencyCardModule } from '../currency-card/currency-card.module';
     MatButtonModule,
     MatTooltipModule,
     MatCardModule,
+    MatIconModule,
+    MatMenuModule,
     RouterModule,
     CurrencyCardModule
   ],

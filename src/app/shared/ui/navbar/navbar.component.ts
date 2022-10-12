@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { CurrencyConverterService } from '../../data-access/currency-converter.service';
+import { ThemeService, AppThemes } from '../../data-access/theme.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,8 +10,14 @@ import { Component } from '@angular/core';
 export class NavbarComponent {
 
   public logoName = "Awesome Converter";
-  public topRightText = "Basic Version";
+  public appThemes = AppThemes;
 
-  constructor() { }
+  constructor(public curConvSvc: CurrencyConverterService,
+    public themeService: ThemeService) { }
+
+  ngOnInit() {
+    
+  }
+
 
 }
